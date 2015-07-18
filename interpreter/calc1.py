@@ -2,7 +2,7 @@
 #           FigNewtons
 #
 
-INTEGER, PLUS, EOF = 'INTEGER', 'PLUS', 'EOF'
+INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
 
 class Token(object):
     def __init__(self, type, value):
@@ -45,6 +45,11 @@ class Interpreter(object):
             self.pos += 1
             return token
 
+        if current_char == '-':
+            token = Token(MINUS, current_char)
+            self.pos += 1
+            return token
+
         self.error()
 
     def eat(self, token_type):
@@ -60,12 +65,16 @@ class Interpreter(object):
         self.eat(INTEGER)
 
         op = self.current_token
-        self.eat(PLUS)
+        self.eat(PLUS) if op.type == 'PLUS' else self.eat(MINUS)
 
         right = self.current_token
         self.eat(INTEGER)
 
-        result = left.value + right.value
+        if op.type == 'PLUS':
+            result = left.value + right.value
+        else:
+            result = left.value - right.value
+
         return result
 
 
