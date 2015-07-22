@@ -1,8 +1,85 @@
 import os, re
 from mutagen.easyid3 import EasyID3
 
-# Path takes form '~/music/albums/'Artist'/'Album (Year)'
+# Prints out existing tags
+def read_tags(path, folder = False, encoding = 'mp3'):
+    if folder:
+        files = [f for f in os.listdir(path) if encoding in f]
+        for song in files:
+            audio = EasyID3(path + '/' + song)
+            print(audio.pprint())
+    else:
+        audio = EasyID3(path)
+        print(audio.pprint() + '\n')
 
+# Prints out fields from existing tags
+def read_fields(path, *keys, folder = False, encoding = 'mp3'):
+    valid_keys = EasyID3.valid_keys.keys()
+    keys = [k for k in keys if k in valid_keys]
+    
+    if folder:
+        files = [f for f in os.listdir(path) if encoding in f]
+        for song in files:
+            audio = EasyID3(path + '/' + song)
+            print('Song: ' + song)
+            for k in keys:
+                print(k + ": " + audio[k])
+    else:
+        audio = EasyID3(path)
+        print('Song: ' + song)
+        for k in keys:
+            print(k + ": " + audio[k])
+
+
+# Updates abritrarily many fields for a tag / set of tags
+def update_tags(path, folder = False, encoding = 'mp3', **fields):    
+    keys = sorted(fields.keys())
+    valid_keys = EasyID3.valid_keys.keys()
+    
+    keys = [k for k in keys if k in valid_keys]
+
+    if folder:
+        files = [f for f in os.listdir(path) if encoding in f]
+        for song in files:
+            try:
+                audio = EasyID3(path + '/' + song)
+                print('Song: ' + song)
+                for k in keys:
+                    audio[k] = fields[k]
+                    print('Updated field: ' + k + ':' + fields[k])
+            except:
+                print('Failed to update for song: ' + song)
+    else:
+        try:
+            audio = EasyID3(path)
+            for k in keys:
+                audio[k] = fields[k]
+                print('Updated field: ' + k + ':' + fields[k])
+            audio.save()
+        except:
+            print('Failed to update')
+
+# Deletes tag                
+def delete_tags(path, folder = False, encoding = 'mp3'):
+    if folder:
+        files = [f for f in os.listdir(path) if encoding in f]
+        for song in files:
+            audio = EasyID3(path + '/' + song)
+            try:
+                audio.delete()
+                print('Deleted tags for: ' + song)
+            except:
+                print('Failed to delete tags for: ' + song)
+    else:
+        audio = EasyID3(path)
+        try:
+            audio.delete()
+            print('Deleted tags')
+        except:
+            print('Failed to delete tags')
+
+
+# Path takes form '~/music/albums/'Artist'/'Album (Year)'
 def tag_album(path, genre, encoding = 'mp3', discno = '1/1', test = True):
   
     # Gets 4-digit year in parenthesis at end of string
@@ -55,7 +132,7 @@ def tag_album(path, genre, encoding = 'mp3', discno = '1/1', test = True):
             except (AttributeError, KeyError):
                 print('Something wrong with writing tag to file')
             else:
-                audio.pprint()
+                print(audio.pprint() + '\n')
 
 
 
