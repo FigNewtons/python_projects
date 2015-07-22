@@ -1,25 +1,28 @@
 import os, re
 from mutagen.easyid3 import EasyID3
 
-# Prints out existing tags
-def read_tags(path, folder = False, encoding = 'mp3'):
+
+def read_tags(path, folder=False, encoding='mp3'):
+    """Print out existing tags. """
     if folder:
-        files = [f for f in os.listdir(path) if encoding in f]
-        for song in files:
+        songs = [f for f in os.listdir(path) if encoding in f]
+        for song in songs:
             audio = EasyID3(path + '/' + song)
             print(audio.pprint())
     else:
         audio = EasyID3(path)
         print(audio.pprint() + '\n')
 
-# Prints out fields from existing tags
-def read_fields(path, *keys, folder = False, encoding = 'mp3'):
+
+# TODO: Fix argument list so that *keys works
+def read_fields(path, *keys, folder=False, encoding='mp3'):
+    """Print out specific fields from existing tags. """
     valid_keys = EasyID3.valid_keys.keys()
     keys = [k for k in keys if k in valid_keys]
     
     if folder:
-        files = [f for f in os.listdir(path) if encoding in f]
-        for song in files:
+        songs = [f for f in os.listdir(path) if encoding in f]
+        for song in songs:
             audio = EasyID3(path + '/' + song)
             print('Song: ' + song)
             for k in keys:
@@ -31,16 +34,16 @@ def read_fields(path, *keys, folder = False, encoding = 'mp3'):
             print(k + ": " + audio[k])
 
 
-# Updates abritrarily many fields for a tag / set of tags
-def update_tags(path, folder = False, encoding = 'mp3', **fields):    
+def update_tags(path, folder=False, encoding='mp3', **fields):    
+    """Update field value(s) for a tag / set of tags. """
     keys = sorted(fields.keys())
     valid_keys = EasyID3.valid_keys.keys()
     
     keys = [k for k in keys if k in valid_keys]
-
+    
     if folder:
-        files = [f for f in os.listdir(path) if encoding in f]
-        for song in files:
+        songs = [f for f in os.listdir(path) if encoding in f]
+        for song in songs:
             try:
                 audio = EasyID3(path + '/' + song)
                 print('Song: ' + song)
@@ -59,11 +62,12 @@ def update_tags(path, folder = False, encoding = 'mp3', **fields):
         except:
             print('Failed to update')
 
-# Deletes tag                
-def delete_tags(path, folder = False, encoding = 'mp3'):
+
+def delete_tags(path, folder=False, encoding='mp3'):
+    """Delete the entire tag. """
     if folder:
-        files = [f for f in os.listdir(path) if encoding in f]
-        for song in files:
+        songs = [f for f in os.listdir(path) if encoding in f]
+        for song in songs:
             audio = EasyID3(path + '/' + song)
             try:
                 audio.delete()
@@ -79,15 +83,45 @@ def delete_tags(path, folder = False, encoding = 'mp3'):
             print('Failed to delete tags')
 
 
-# Path takes form '~/music/albums/'Artist'/'Album (Year)'
-def tag_album(path, genre, encoding = 'mp3', discno = '1/1', test = True):
-  
-    # Gets 4-digit year in parenthesis at end of string
-    year_regex = '\((\d{4})\)$'
+# TODO: Include album cover in tag.
+def tag_album(path, genre, encoding='mp3', discno='1/1', test=False):
+    """Create tag for every song in a given album.
     
-    # Split song title:  '##. Song Title.mp3'
-    song_regex = '^(\d{2})\. (.+).' + encoding
+    By default, each tag has the following fields:
+        -Album
+        -Artist
+        -Date  (Album release date)
+        -Disc Number
+        -Genre
+        -Title
+        -Track Number
+    
+    Args:
+        path: Path to the album directory
+        genre: Album genre (e.g. 'Rock, 'Indie', 'Jazz')
+        encoding: Song encoding (e.g. 'mp3', 'm4a', 'flac'); only mp3
+                is supported at the moment
+        discno: Disc Number / Total Number of Discs in Album set
+        test: This option allows you to view what information is written
+                to the tags before actually doing it
 
+    Note:
+        The function makes a few assumptions regarding the path
+        and song format (based on a convention I picked). First,
+        the path argument takes the form:
+        
+            "~/music/albums/'Artist'/'Album (Year)'"
+
+        where Year is four digits. Second, each song takes the form:
+            
+            "xx. Song Title.mp3"
+
+        where xx is a two-digit number (e.g. 05, 12). Last, album covers
+        have the relative path "artwork/cover.jpg" from the album
+        directory. 
+    """
+    year_regex = '\((\d{4})\)$'
+    song_regex = '^(\d{2})\. (.+).' + encoding
 
     art, alb = path.split('/')[-2:]
 
@@ -98,24 +132,25 @@ def tag_album(path, genre, encoding = 'mp3', discno = '1/1', test = True):
     # Strip parentheses
     date = year[1:5]
 
-    files = [f for f in os.listdir(path) if encoding in f]
-    total = str(len(files))
+    songs = [f for f in os.listdir(path) if encoding in f]
+    total = str(len(songs))
 
-    for song in files:
-        
-        m = re.search(song_regex, song)
-        trackno, title = m.groups()
-
+    for song in songs:
+        match = re.search(song_regex, song)
+        trackno, title = match.groups()
         
         if trackno[0] == '0':
             trackno = trackno[1]
-
         trackno = trackno + '/' + total
-
-
+        
         if test:
-            tag = "Album: {0}\nArtist: {1}\nDate: {2}\nDiscNo: {3}\nGenre: {4}\nTitle: {5}\nTrackNo: {6}".format(album, artist, date, discno, genre, title, trackno)
-            print(tag)
+            print("Album: ", album)
+            print("Artist: ", artist)
+            print("Date: ", date)
+            print("Disc No: ", discno)
+            print("Genre: ", genre)
+            print("Title: ", title)
+            print("Track No: ", trackno)
         else:
             try:
                 audio = EasyID3(path + "/" + song)
