@@ -79,6 +79,31 @@ class File:
             print('Error: line number out of range')
     
     
+    def replace(self, text, line_no = 'end'):
+        """Replace a set of lines in the file with a block of text starting
+        at the specified line number. """
+        text_lines = text.split('\n')
+        text_lines = [line + '\n' for line in text_lines]
+        
+        # Add one for the extra newline char added
+        offset = len(text) + 1
+        try:
+            if line_no == 'end':
+                line_no = len(self.lines)
+            
+            self.lines = self.lines[0: line_no - 1] + text_lines +  self.lines[line_no - 1 + len(text): ]
+            self.line_pos = [0] + list(acc([len(line) for line in self.lines]))
+            
+            current_pos = self.line_pos[line_no - 1]
+            
+            with open(self.filename, 'r+') as f:
+                f.seek(current_pos)
+                for i in range(line_no - 1, len(self.lines)):
+                    f.write(self.lines[i])
+        except IndexError:
+            print('Error: line number out of range')
+    
+    
     def append(self, string, line_no = 'end'):
         """Append a string to the file at the specified line number. 
         By default, the function appends the last line (no newline included). 
