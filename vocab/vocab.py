@@ -6,6 +6,7 @@ class Vocab(File):
     def __init__(self, jsonfile):
         self.subjects = set()
         self.dictionary = {}
+        self.template = '    "{0}":\n        {{"pos": "{1}",\n        "subject": "{2}",\n        "meaning": "{3}"}}'
         
         with open(jsonfile) as jfile:
             d = json.load(jfile)
@@ -57,9 +58,15 @@ class Vocab(File):
     
     def wordlist(self):
         """Return a sorted list of all words in the dictionary. """
-        return sorted(self.dictionary.keys)
+        return sorted(self.dictionary.keys())
     
     #TODO: Allow writing to dictionary
-    def add_word(term, meaning):
-        return term + " - " + meaning
+    def add_word(self, term, pos, subject, meaning):
+        entry = self.template.format(term,pos, subject, meaning)
+        line_count = len(self.lines)
+        self.append(',', line_count - 1)
+        self.insert(entry)
+        
+
+
 
