@@ -1,0 +1,141 @@
+{"dictionary":{
+    "a priori":
+        {"pos": "adjective",
+        "subject": "philosophy",
+        "meaning": "knowledge 'prior to experience'; knowledge derived from reason alone"},
+    "a posteriori":
+        {"pos": "adjective",
+        "subject": "philosophy",
+        "meaning": "knowledge “after experience”; knowledge derived as a result of observation"},
+    "abduction":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "method of inference that goes from an observation to a hypothesis that attempts to explain the hypothesis as a sufficient, though not necessary, cause to the observation (guessing)"},
+    "ablution":
+        {"pos": "noun", 
+        "subject": "religion",
+        "meaning": "the act of washing oneself (as in a religious rite)"},
+    "aporia":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "a philosophical puzzle; an insoluble impasse to an inquiry"},
+    "arhat":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "one who has gained insight into the true nature of existence and has achieved nirvana; Sanskrit for 'one who is worthy'"},
+    "beatitudes":
+        {"pos": "noun", 
+        "subject": "religion",
+        "meaning": "the teachings of Jesus found in the Gospels in the form of 'Blessed are...'"},
+    "catechism":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "a summary of the principles of the Christian religion in the form of questions and answers"},
+    "censer":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "a container in which incense is burned (like during mass)"},
+    "deduction":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "(general to specific) method to derive conclusions from premises assumed to be true"},
+    "dialectic":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "a method of examining and discussing opposing ideas in order to find the truth"},
+    "ecumenical":
+        {"pos": "adjective",
+        "subject": "religion",
+        "meaning": "universal; representing a number of different (usually nondenominational) Christian churches"},
+    "elenchus":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "a logical refutation; the Socratic method of eliciting truth by question and answer, especially as used to refute an argument"},
+    "enthymeme":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "an argument in which one premise is not explicitly stated (an informal or truncated syllogism)"},
+    "etiology":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "the study of causation (origin)"},
+    "exegesis":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "critical explanation or analysis, especially of a text"},
+    "exegete":
+        {"pos": "verb",
+        "subject": "religion",
+        "meaning": "to expound or interpret a text, especially scripture"},
+    "hermeneutics":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "the theory of text interpretation (esp. for biblical texts and philosophical texts)"},
+    "immanentize the eschaton":
+        {"subject": "religion",
+        "meaning": "trying to create Heaven here on Earth"},
+    "imprimatur":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "an official license by the Roman Catholic Church to print an ecclesiastical or religious book"},
+    "induction":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "(specific to general) method that uses specific observations/data to draw a general conclusion (which may or may be true, but is probable given what is known) – this is different from a proof by induction, which is a mathematically sound way to prove statements by starting with a base case and extending such results across the entire domain of discourse"},
+    "litany":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "a series of petitions for use in church services or processions, usually recited by the clergy and responded to in a recurring formula by the people; a tedious recital or repetitive series"},
+    "modus ponens":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "mode that affirms (conditional statement)"},
+    "modus tollens":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "mode that denies (contrapositive)"},
+    "nescience":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "absence of knowledge or awareness; ignorance; agnosticism"},
+    "nous":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "a classical term for the faculty of the human mind; reason and knowledge (intellect) as opposed to sense perception"},
+    "parochial":
+        {"pos": "adjective",
+        "subject": "religion",
+        "meaning": "relating to a local church parish; having a limited or narrow outlook/scope"},
+    "pontificate":
+        {"pos": "verb",
+        "subject": "religion",
+        "meaning": "(in the Roman Catholic Church) to officiate as bishop, especially at Mass; to express one's opinions in a way considered annoyingly pompous and dogmatic"},
+    "prima facie":
+        {"pos": "adjective",
+        "subject": "philosophy",
+        "meaning": "at first appearance; accepted as correct until proven otherwise"},
+    "providence":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "the protective care of God or of nature as a spiritual power"},
+    "qualia":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "the internal and subjective component of sense perceptions, arising from stimulation of the senses by phenomena (ineffable, intrinsic, private, directly apprehensible in consciousness)"},
+    "tabernacle":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "a meeting place of worship"},
+    "teleology":
+        {"pos": "noun",
+        "subject": "philosophy",
+        "meaning": "the notion that final causes exist in nature"},
+    "theodicy":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "the vindication of divine goodness and providence in view of the existence of evil"},
+    "votary":
+        {"pos": "noun",
+        "subject": "religion",
+        "meaning": "a person who has made vows of dedication to religious service (like a nun or monk)"}
+}}
