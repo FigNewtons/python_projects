@@ -1,0 +1,33 @@
+
+TCP/ UDP connections are unique 5-argument tuples:
+{<protocol>, <src addr>, <src port>, <dest addr>, <dest port>}
+
+Steps:
+    1. Set the protocol with socket()
+    2. Add source address and port with bind()
+    3. Destination address and port set with connect()
+
+
+
+ADDRESS FAMILIES
+------------------------------------------------------------
+  Name                   Purpose                 
+   AF_UNIX, AF_LOCAL      Local communication              
+   AF_INET                IPv4 Internet protocols        
+   AF_INET6               IPv6 Internet protocols
+   AF_IPX                 IPX - Novell protocols
+   AF_NETLINK             Kernel user interface device    
+   AF_X25                 ITU-T X.25 / ISO-8208 protocol 
+   AF_AX25                Amateur radio AX.25 protocol
+   AF_ATMPVC              Access to raw ATM PVCs
+   AF_APPLETALK           Appletalk                      
+   AF_PACKET              Low level packet interface     
+
+Internet sockets have:
+    - Local Socket Address (IP address + port #)
+    - Protocol (TCP, UDP, raw IP)
+
+Socket types
+    - Datagram (connectionless) - UDP
+    - Stream (connection) - TCP
+    - Raw (Raw IP) - Generally for routers
