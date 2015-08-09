@@ -19,7 +19,7 @@ def scale(polynomial, factor):
 
 
 def newton(f, theta = 0, iterations = 20):
-    '''Run Newton's method on function f for a given number of iterations
+    '''Run Newton's method on polynomial f for a given number of iterations
     starting at value theta. '''
     df = derivative(f)
 
