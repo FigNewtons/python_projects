@@ -13,17 +13,17 @@ def viterbi(obs, states, start, transition, emission):
 
     The values come from the start and emission dictionaries. We then 
     update the paths (since no transition occurred, 'Healthy' maps to 
-    ['Healthy'] and likewise for 'Fever'.
+    ['Healthy'] and likewise for 'Fever').
 
     For subsequent days, we apply Bayes' theorem for each pair of 
     states. So for example:
 
-    Probability that today the patient is healthy given that they are
-    cold and were healthy yesterday
+    Probability that today the patient is healthy given that they have
+    a cold and were healthy yesterday
     P(H | C, H) = [P(H yesterday) * P(H -> H)] * P(C | H)
 
     We pick the highest probability for the state yesterday and update
-    V and the path.
+    V and the corresponding path.
 
     Because the probabilities "cascade" due to the transitions, at the
     very end we choose the state with the highest end probability and 
